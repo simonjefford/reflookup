@@ -2,6 +2,9 @@
   (:use clojure.test
         reflookup.core))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(def google_lookup { "example.com" {"referrer_id" 1}})
+
+(deftest addreferral_simple
+  (testing "adds a single piece of referral information to a 'simple' url"
+    (is (= "http://example.com?referrer_id=1"
+           (add-referral "http://example.com" google_lookup)))))
